@@ -28,3 +28,40 @@ public class FirstNonRepeatingChar {
     }
 
 }
+
+
+=======================================================
+
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.function.Function;
+
+class Main {
+    public static void main(String[] args) {
+        
+       String input = "aaabbbccddefggh";
+       
+       Map<String, Long> freqCount = input.chars()
+                                      .mapToObj(c -> String.valueOf((char)c))
+                                      .collect(Collectors.groupingBy(
+                                              Function.identity(),
+                                              LinkedHashMap::new,
+                                              Collectors.counting()
+                                      ));
+
+       Optional<String> secondNonRepeated = freqCount.entrySet().stream()
+               .filter(entry -> entry.getValue() == 1) // first repeated (.filter(entry -> entry.getValue() > 1))
+               .map(entry->entry.getKey())
+               .skip(1)
+               .findFirst();
+               
+               
+               if(secondNonRepeated.isPresent()){
+                    System.out.println("Second non-repeated char: " + secondNonRepeated.get());
+               }else{
+                    System.out.println("No Second repeated element");
+               }
+      
+    }
+}
+
