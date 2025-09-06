@@ -1,0 +1,23 @@
+
+import java.util.*;
+import java.util.stream.*;
+import java.util.function.*;
+//import java.util.
+class Main {
+    public static void main(String[] args) {
+        String s = "adn";
+        
+        List<Character> word = s.chars()
+                             .mapToObj(c->(char)(c+1))
+                             .collect(Collectors.toList());
+        System.out.println("chart next char : " + word);
+/* String nextCharacter = s.chars()
+                         .map(c-> c + 1)
+                          .mapToObj(c-> String.valueOf((char)c))
+                           .collect(Collectors.joining());
+              System.out.println( nextCharacter);
+      */
+    }
+}
+
+output: [b,e,o]
